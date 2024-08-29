@@ -66,6 +66,7 @@ public partial class ElearningContext : DbContext
             entity.ToTable("course");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Banner).HasColumnName("banner");
             entity.Property(e => e.Cname)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -81,10 +82,17 @@ public partial class ElearningContext : DbContext
 
         modelBuilder.Entity<PaymentPlace>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("PaymentPlace");
+            entity.HasKey(e => e.Pid);
 
+            entity.ToTable("PaymentPlace");
+
+            entity.Property(e => e.Pid)
+                .ValueGeneratedNever()
+                .HasColumnName("pid");
+            entity.Property(e => e.Banner)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("banner");
             entity.Property(e => e.Course)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -93,7 +101,6 @@ public partial class ElearningContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("dt");
-            entity.Property(e => e.Pid).HasColumnName("pid");
             entity.Property(e => e.Price)
                 .HasColumnType("decimal(9, 2)")
                 .HasColumnName("price");

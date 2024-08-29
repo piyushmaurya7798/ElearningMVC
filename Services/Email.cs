@@ -1,8 +1,9 @@
 ﻿
 using System.Net;
 using System.Net.Mail;
+using EmailSend.MiddleWare;
 
-namespace EmailSend.MiddleWare
+namespace ElearningMVC.Services
 {
     public class Email : EmailSending
     {

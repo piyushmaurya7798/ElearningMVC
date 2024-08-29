@@ -13,5 +13,5 @@ public partial class Course
 
     public decimal? Price { get; set; }
 
-    public string? banner { get; set; }
+    public string? Banner { get; set; }
 }

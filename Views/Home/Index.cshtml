@@ -10,7 +10,7 @@
                     <div class="input-group-prepend">
                        @*  <button class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Courses</button> *@
-                        <select class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" onclick="demo()" >
+                        <select class="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" onchange="demo()" >
                             @foreach (var d in Model)
                             {
                                 <option class="dropdown-item">@d.Cname</option>
@@ -138,7 +138,7 @@
         <div class="owl-carousel courses-carousel">
             @foreach (var data in Model) {
                 <div class="courses-item position-relative">
-                    <img class="img-fluid" src="@data.banner" alt="">
+                    <img class="img-fluid" src="@data.Banner" alt="">
                     <div class="courses-text">
                         <h4 class="text-center text-white px-3">@data.Cname</h4>
                         <div class="border-top w-100 mt-3">

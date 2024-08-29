@@ -5,7 +5,7 @@ namespace ElearningMVC.Models;
 
 public partial class PaymentPlace
 {
-    public int? Pid { get; set; }
+    public int Pid { get; set; }
 
     public string? Subcourse { get; set; }
 
@@ -16,4 +16,6 @@ public partial class PaymentPlace
     public string? Dt { get; set; }
 
     public string? Suser { get; set; }
+
+    public string? Banner { get; set; }
 }

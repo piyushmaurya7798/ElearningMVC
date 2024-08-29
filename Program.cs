@@ -1,4 +1,6 @@
+using ElearningMVC.MiddleWare;
 using ElearningMVC.Models;
+using ElearningMVC.Services;
 using EmailSend.MiddleWare;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddConnections(options=>
     );
 builder.Services.AddScoped<ElearningContext>();
 builder.Services.AddTransient<EmailSending, Email>();
+//builder.Services.AddTransient<CourseInterface, CourseImplement>();
+builder.Services.AddScoped<CourseInterface,CourseImplement>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

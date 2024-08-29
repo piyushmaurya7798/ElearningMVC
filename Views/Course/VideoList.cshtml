@@ -1,0 +1,143 @@
+﻿@using ElearningMVC.Models
+
+@model List<Video>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Slidebar/fonts/icomoon/style.css">
+
+    @* <link rel="stylesheet" href="css/owl.carousel.min.css"> *@
+
+    <!-- Bootstrap CSS -->
+    @* <link rel="stylesheet" href="css/bootstrap.min.css"> *@
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="/Slidebar/css/style.css">
+
+    <title>Sidebar #1</title>
+  </head>
+  <body>
+  
+    
+    <aside class="sidebar" style="height:100vh">
+      <div class="toggle">
+        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+              <span></span>
+            </a>
+      </div>
+      <div class="side-inner">
+
+        <select id="selectedvideo">
+        @foreach(var data in Model)
+        {
+        <option value="@data.Url">@data.Topic</option>
+        }
+        </select>
+
+        </div>
+      
+    </aside>
+    <main>
+      <div class="site-section" style="padding:0">
+        <div class="container">
+          <div class="row justify-content-center">
+
+
+
+    <iframe id="video" width="420" height="600px" frameborder="0" style="display:none" allowfullscreen></iframe>
+
+    <div style="display:flex;justify-content:space-around;padding-top:30px">
+
+        <input type="button" class="btn btn-success" id="mcqs" style="display:none" value="Mcqs" />
+        <input type="button" class="btn btn-success" id="review" style="display:none" value="Review" />
+        </div>
+        <div style="display:flex;justify-content:space-around">
+        <div style="display:none" id="Mcsqdiv">
+            <div style="display:flex;gap:100px">
+            <div><</div>
+            <div>></div>
+            </div>
+            <div class="d-flex" style="justify-content:center">
+            <div>
+            <div>Question</div>
+            <ol>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                </ol>
+            </div>
+            </div>
+            </div>
+</div>
+</div>
+</div>
+    </main>
+
+     <script src="/Slidebar/js/jquery-3.3.1.min.js"></script>
+    <script src="/Slidebar/js/bootstrap.min.js"></script>
+
+    <script src="/Slidebar/js/popper.min.js"></script>
+    <script src="/Slidebar/js/main.js"></script>
+  </body>
+</html>
+
+
+
+
+
+@* <!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+</head>
+<body>
+    <select id="selectedvideo">
+        @foreach(var data in Model)
+        {
+        <option value="@data.Url">@data.Topic</option>
+        }
+        </select>
+
+    <hr/> *@
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("change", "#selectedvideo", function () {
+            var url = $("#selectedvideo").val();
+            url = url.split('v=')[1];
+            $("#video")[0].src = "//www.youtube.com/embed/" + url;
+             $('#NavBoss').css("display", "block");
+          $('body').removeClass('show-sidebar');
+				$('body').find('.js-menu-toggle').removeClass('active');
+             $('#mcqs').css("display", "block");
+             $('#review').css("display", "block");
+             $('#Mcsqdiv').css("display", "none");
+
+            $("#video").show();
+        });
+    </script>
+@* </body>
+</html> *@
