@@ -7,5 +7,6 @@ namespace ElearningMVC.MiddleWare
     {
         public List<PaymentPlace> MyCourse(string user);
         public List<Video> getVideos(int id);
+        public List<Mcqs> Getmcqs(int id);
     }
 }

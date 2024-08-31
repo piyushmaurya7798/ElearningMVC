@@ -33,5 +33,11 @@ namespace ElearningMVC.Controllers
             var data = r.getVideos(id);
             return View(data);
         }
+        
+        public JsonResult Mcqs(int data)
+        {
+            var data2 = r.Getmcqs(data);
+            return Json(data2);
+        }
     }
 }

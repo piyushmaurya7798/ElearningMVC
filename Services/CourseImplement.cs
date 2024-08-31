@@ -12,6 +12,12 @@ namespace ElearningMVC.Services
             this.db = db;
         }
 
+        public List<Mcqs> Getmcqs(int id)
+        {
+            var mcqslist=db.Mcqss.Where(x=>x.vid==id).ToList();
+            return mcqslist;
+        }
+
         public List<Video> getVideos(int id)
         {
             var course=db.PaymentPlaces.Find(id).Course;

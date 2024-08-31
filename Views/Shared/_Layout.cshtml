@@ -69,7 +69,7 @@
                         <a asp-controller="home" asp-action="index" class="nav-item nav-link active">Home</a>
                         <a asp-controller="home" asp-action="about" class="nav-item nav-link">About</a>
                         <a asp-controller="home" asp-action="index" class="nav-item nav-link">Courses</a>
-                        <a asp-controller="home" asp-action="mycourse" class="nav-item nav-link">My Course</a>
+                        <a asp-controller="course" asp-action="GetMyCourse" class="nav-item nav-link">My Course</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -179,6 +179,7 @@
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,56 +1,48 @@
 (function ($) {
     "use strict";
 
-        $('.js-menu-toggle').click(function (e) {
+    // Menu toggle
+    $('.js-menu-toggle').click(function (e) {
+        var $this = $(this);
+        if ($('body').hasClass('show-sidebar')) {
+            $('body').removeClass('show-sidebar');
+            $this.removeClass('active');
+        } else {
+            $('body').addClass('show-sidebar');
+            $this.addClass('active');
+        }
+        e.preventDefault();
+    });
 
-            var $this = $(this);
-
-
-
+    // Click outside offcanvas
+    $(document).mouseup(function (e) {
+        var container = $(".sidebar");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
             if ($('body').hasClass('show-sidebar')) {
                 $('body').removeClass('show-sidebar');
-                $this.removeClass('active');
-            } else {
-                $('body').addClass('show-sidebar');
-                $this.addClass('active');
-            }
-
-            e.preventDefault();
-
-        });
-
-        // click outisde offcanvas
-        $(document).mouseup(function (e) {
-            var container = $(".sidebar");
-            if (!container.is(e.target) && container.has(e.target).length === 0) {
-                if ($('body').hasClass('show-sidebar')) {
-                    $('body').removeClass('show-sidebar');
-                    $('body').find('.js-menu-toggle').removeClass('active');
-                }
-            }
-        });
-
-
-
-    }); 
-    // Dropdown on mouse hover
-    $(document).ready(function () {
-        function toggleNavbarMethod() {
-            if ($(window).width() > 992) {
-                $('.navbar .dropdown').on('mouseover', function () {
-                    $('.dropdown-toggle', this).trigger('click');
-                }).on('mouseout', function () {
-                    $('.dropdown-toggle', this).trigger('click').blur();
-                });
-            } else {
-                $('.navbar .dropdown').off('mouseover').off('mouseout');
+                $('body').find('.js-menu-toggle').removeClass('active');
             }
         }
+    });
+
+    // Dropdown on mouse hover
+    function toggleNavbarMethod() {
+        if ($(window).width() > 992) {
+            $('.navbar .dropdown').on('mouseover', function () {
+                $('.dropdown-toggle', this).trigger('click');
+            }).on('mouseout', function () {
+                $('.dropdown-toggle', this).trigger('click').blur();
+            });
+        } else {
+            $('.navbar .dropdown').off('mouseover').off('mouseout');
+        }
+    }
+
+    $(document).ready(function () {
         toggleNavbarMethod();
         $(window).resize(toggleNavbarMethod);
     });
-    
-    
+
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
@@ -59,11 +51,11 @@
             $('.back-to-top').fadeOut('slow');
         }
     });
+
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
-
 
     // Facts counter
     $('[data-toggle="counter-up"]').counterUp({
@@ -71,30 +63,20 @@
         time: 2000
     });
 
-
     // Courses carousel
     $(".courses-carousel").owlCarousel({
         autoplay: true,
         smartSpeed: 1500,
         loop: true,
         dots: false,
-        nav : false,
+        nav: false,
         responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:2
-            },
-            768:{
-                items:3
-            },
-            992:{
-                items:4
-            }
+            0: { items: 1 },
+            576: { items: 2 },
+            768: { items: 3 },
+            992: { items: 4 }
         }
     });
-
 
     // Team carousel
     $(".team-carousel").owlCarousel({
@@ -103,27 +85,18 @@
         margin: 30,
         dots: false,
         loop: true,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="fa fa-angle-left" aria-hidden="true"></i>',
             '<i class="fa fa-angle-right" aria-hidden="true"></i>'
         ],
         responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            },
-            992:{
-                items:3
-            }
+            0: { items: 1 },
+            576: { items: 1 },
+            768: { items: 2 },
+            992: { items: 3 }
         }
     });
-
 
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
@@ -132,13 +105,12 @@
         items: 1,
         dots: false,
         loop: true,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="fa fa-angle-left" aria-hidden="true"></i>',
             '<i class="fa fa-angle-right" aria-hidden="true"></i>'
         ],
     });
-
 
     // Related carousel
     $(".related-carousel").owlCarousel({
@@ -147,30 +119,16 @@
         margin: 30,
         dots: false,
         loop: true,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="fa fa-angle-left" aria-hidden="true"></i>',
             '<i class="fa fa-angle-right" aria-hidden="true"></i>'
         ],
         responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            }
+            0: { items: 1 },
+            576: { items: 1 },
+            768: { items: 2 }
         }
     });
-    
+
 })(jQuery);
-
-
-function demo()
-{
-alert("Good")
-}
-
-
