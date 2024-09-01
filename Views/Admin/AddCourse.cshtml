@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_AdminLayout";
+    // var breadcrumb = Context.Session.GetString("BreadCrum");
+}
+
+@model AddCourseView
+
+@TempData["msg"]
+
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="card shadow-lg">
+                            <div class="card-header text-center">
+                                <h2>Add Course</h2>
+
+                            </div>
+                            <div class="card-body">
+                                <form asp-action="AddCourse" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label class="form-label">Course Name</label>
+                                        <input asp-for="Cname" class="form-control" />
+                                        <span asp-validation-for="Cname" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">SubCourse Name</label>
+                                        <input asp-for="Subname" class="form-control" />
+                                        <span asp-validation-for="Subname" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Price</label>
+                                        <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                                        <span asp-validation-for="Price" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Upload Picture</label>
+                                        <input asp-for="Banner" class="form-control" type="file" />
+                                        <span asp-validation-for="Banner" class="text-danger"></span>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="card shadow-lg">
+                            <div class="card-header text-center">
+                                <h2>Course Progress</h2>
+                            </div>
+
+
+                                    <div class="card project-task">
+                                        <div class="card-header">
+                                            <div class="card-header-left">
+
+                                            </div>
+                                            <div class="card-header-right">
+                                                <ul class="list-unstyled card-option">
+                                                    <li><i class="icofont icofont-simple-left"></i></li>
+                                                    <li><i class="icofont icofont-maximize full-card"></i></li>
+                                                    <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                                    <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                                    <li><i class="icofont icofont-error close-card"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="card-block p-b-10">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th>UserId</th>
+                                                            <th>Username</th>
+                                                            <th>Course Name</th>
+                                                            <th>Price</th>
+                                                            <th>Review</th>
+                                                            <th>Review Approved</th>
+                                                            <th>Progress</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.UserId</td>
+                                                                <td>@item.Username</td>
+                                                                <td>@item.CourseName</td>
+                                                                <td>@item.Price</td>
+                                                                <td>
+                                                                    <p>@item.Review</p>
+                                                                </td>
+                                                                <td>
+                                                                    @if (item.ReviewApproved)
+                                                                    {
+                                                                        <i class="icofont icofont-check-circled text-success"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="icofont icofont-close-circled text-danger"></i>
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar bg-c-blue" role="progressbar" aria-valuenow="@item.Progress"
+                                                                             aria-valuemin="0" aria-valuemax="100" style="width:@item.Progress%">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+
+                            <div class="card-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

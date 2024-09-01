@@ -1,0 +1,155 @@
+﻿@{
+    Layout = null;
+}
+
+@model UserAccount
+<html>
+	<head>
+<link href="~/css/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/ElearningMVC.styles.css" asp-append-version="true" />
+    <link href="~/css/signin.css" rel="stylesheet" />
+	</head>
+@* <form method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" asp-for="UserEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <span class="text-danger">@TempData["erroremail"]</span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="text" asp-for="UserPass" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <span class="text-danger">@TempData["errorpasword"]</span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <a asp-action="ExternalLogin" asp-route-provider="Google">Sign in with Google</a>
+</form> *@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<div id="container" class="container" style="padding:0;margin:0;width:100%">
+	<!-- FORM SECTION -->
+	<div class="row">
+		<!-- SIGN UP -->
+		<div class="col align-items-center flex-col sign-up">
+		<form method="post" asp-action="Signup" asp-controller="Auth">
+			<div class="form-wrapper align-items-center">
+				<div class="form sign-up">
+					<div class="input-group">
+						<i class='bx bxs-user'></i>
+						<input type="text" asp-for="UserFname" class="form-control" placeholder="User Name"/><br />
+					</div>
+					<div class="input-group">
+						<i class='bx bxs-lock-alt'></i>
+						<input type="text" asp-for="UserLname" placeholder="Last Name" class="form-control" /><br />
+					</div>
+					<div class="input-group">
+						<i class='bx bx-mail-send'></i>
+						<input type="email" asp-for="UserEmail" class="form-control" placeholder="User Email"/><br />
+					</div>
+					<div class="input-group">
+						<i class='bx bxs-lock-alt'></i>
+						<input type="text" asp-for="UserPass" placeholder="Enter Password" class="form-control" /><br />
+					</div>
+					<input type="submit" value="Save" class="btn btn-primary" />
+					<p>
+						<span>
+							Already have an account?
+						</span>
+						<b onclick="toggle()" class="pointer">
+							Sign in here
+						</b>
+					</p>
+				</div>
+			</div>
+
+		</form>
+		</div>
+		<!-- END SIGN UP -->
+		<!-- SIGN IN -->
+		<div class="col align-items-center flex-col sign-in">
+			<div class="form-wrapper align-items-center">
+
+				<div class="form sign-in">
+				<form method="post" asp-action="Signin" asp-controller="Auth">
+					<div class="input-group">
+						<i class='bx bxs-user'></i>
+						<input type="email" asp-for="UserEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+					</div>
+					<div class="input-group">
+						<i class='bx bxs-lock-alt'></i>
+
+						<input type="text" asp-for="UserPass" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+					<a asp-action="ExternalLogin" asp-route-provider="Google">Sign in with Google</a>
+					<p>
+						<b>
+							Forgot password?
+						</b>
+					</p>
+					<p>
+						<span>
+							Don't have an account?
+						</span>
+						<b onclick="toggle()" class="pointer">
+							Sign up here
+						</b>
+					</p>
+				</div>
+			</div>
+			<div class="form-wrapper">
+			</div>
+		</div>
+		<!-- END SIGN IN -->
+	</div>
+	<!-- END FORM SECTION -->
+	<!-- CONTENT SECTION -->
+	<div class="row content-row">
+		<!-- SIGN IN CONTENT -->
+		<div class="col align-items-center flex-col">
+			<div class="text sign-in">
+				<h2>
+					Welcome
+				</h2>
+
+			</div>
+			<div class="img sign-in">
+			</div>
+		</div>
+		<!-- END SIGN IN CONTENT -->
+		<!-- SIGN UP CONTENT -->
+		<div class="col align-items-center flex-col">
+			<div class="img sign-up">
+			</div>
+			<div class="text sign-up">
+				<h2>
+					Join with us
+				</h2>
+
+			</div>
+		</div>
+		<!-- END SIGN UP CONTENT -->
+	</div>
+	<!-- END CONTENT SECTION -->
+</div>
+<script>
+	let container = document.getElementById('container')
+
+	toggle = () => {
+		container.classList.toggle('sign-in')
+		container.classList.toggle('sign-up')
+	}
+
+	setTimeout(() => {
+		container.classList.add('sign-in')
+	}, 200)
+</script>
+</html>

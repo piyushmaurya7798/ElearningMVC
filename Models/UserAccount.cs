@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace ElearningMVC.Models;
@@ -12,6 +13,8 @@ public partial class UserAccount
     public string? UserLname { get; set; }
 
     public long? UserMobile { get; set; }
+
+    [Remote(action: "CheckExistingEmailId", controller: "Auth")]
 
     public string? UserEmail { get; set; }
 

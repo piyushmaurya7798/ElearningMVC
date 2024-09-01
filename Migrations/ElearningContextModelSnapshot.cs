@@ -179,6 +179,32 @@ namespace ElearningMVC.Migrations
                     b.ToTable("PaymentPlace", (string)null);
                 });
 
+            modelBuilder.Entity("ElearningMVC.Models.TaskAssignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("Finishdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Score")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VideoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("taskUpload")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaskAssignments");
+                });
+
             modelBuilder.Entity("ElearningMVC.Models.UserAccount", b =>
                 {
                     b.Property<int>("Id")

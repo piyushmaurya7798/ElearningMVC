@@ -6,7 +6,7 @@
 <style>
         #video-list-container {
             width: 100%;
-            max-height: 200px; /* Set a maximum height to enable scrolling */
+            max-height: 1000px; /* Set a maximum height to enable scrolling */
             overflow-y: auto; /* Enables a vertical scrollbar if the content exceeds max height */
             border: 1px solid #ccc;
             background-color: #f9f9f9;
@@ -30,6 +30,41 @@
                 #video-list li:hover {
                     background-color: #e6e6e6;
                 }
+        /* General Styles for Question Container */
+        .question-content {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question-options {
+            padding-left: 20px;
+            list-style-type: decimal;
+        }
+
+        #Backward, #Forward {
+            font-size: 24px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #Backward {
+            position: absolute;
+            left: 20px;
+        }
+
+        #Forward {
+            position: absolute;
+            right: 20px;
+        }
 
 </style>
 </head>
@@ -51,33 +86,50 @@
     <iframe id="video" width="1000" height="600" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <div style="display:flex;justify-content:space-around">
-        <input type="button" class="btn btn-success" value="mcqs"/>
+    <div style="display:none;justify-content:space-around" id="mcqsdisplay">
+            <input type="button" class="btn btn-success" id="mcqs" value="mcqs" />
+            <input type="button" class="btn btn-success" id="UploadAssignmentbutton" value="Upload Assignment" />
+            <input type="hidden" id="HiddenVid" value="" />
             <input type="button" class="btn btn-success" value="Review" />
 
 
     </div>
-
-   </div>
-    </div>
-
-
-
-    <div style="display:flex;justify-content:space-around">
-        <div style="display:none" id="Mcsqdiv">
-            <div style="display:flex;gap:100px">
-                <div><</div>
-                <div>></div>
-            </div>
-            <div class="d-flex" style="justify-content:center">
-                <div id="mcqsQuestion">
+            <div style="display: flex; justify-content: center; position: relative; width: 100%; padding: 20px;">
+                <div id="Mcsqdiv" style="display: none; width: 100%; max-width: 800px; position: relative;">
+                    <!-- Navigation Buttons -->
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <div id="Backward" style="cursor: pointer; font-size: 24px; user-select: none;">&lt;</div>
+                        <div id="mcqsQuestion">
+                            <div id="question" style="display: block;">
+                                <div class="question-content" id="questionn">
+                                    
+                                </div>
+                                <input type="button" class="btn btn-submit" style="display:none" id="mcqssubmit" value="Submit"/>
+                            </div>
+                        </div>
+                        <div id="Forward" style="cursor: pointer; font-size: 24px; user-select: none;">&gt;</div>
+                    </div>
                 </div>
             </div>
-        </div>
+            </div>
+    <div>
     </div>
+    </div>
+<form asp-action="UploadAssignmentForm" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <div class="d-flex justify-content-center">
+    <div id="UploadSolution" style="display:none">
+            <input type="file" name="videoFile" value="Upload Solution" />
+            <input type="hidden" id="hiddenFieldInForm" name="hiddenFieldInForm" />
+            <input type="submit" onclick="addHiddenFieldValue()" value="submit" />
+    </div>
+    </div>
+    </form>
 
-
-<script src="~/js/handle.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@* <script src="~/js/handle.js"></script> *@
+@* <script src="~/js/javascript.js"></script> *@
 @* <script type="text/javascript">
     $("body").on("change", "#selectedvideo", function () {
         var urlwithid = $("#selectedvideo").val();
@@ -100,3 +152,12 @@
 </script>
  *@
 
+
+<script>
+    function addHiddenFieldValue() {
+        // Get the value from the hidden field outside the form
+        var hiddenValue = document.getElementById("HiddenVid").value;
+        // Set the value to the hidden field inside the form
+        document.getElementById("hiddenFieldInForm").value = hiddenValue;
+    }
+</script>

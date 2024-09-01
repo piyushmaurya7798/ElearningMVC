@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ElearningMVC.styles.css" asp-append-version="true" />
-    <link href="img/favicon.ico" rel="icon">
+    @* <link href="img/favicon.ico" rel="icon"> *@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -68,7 +68,7 @@
                     <div class="navbar-nav mx-auto py-0">
                         <a asp-controller="home" asp-action="index" class="nav-item nav-link active">Home</a>
                         <a asp-controller="home" asp-action="about" class="nav-item nav-link">About</a>
-                        <a asp-controller="home" asp-action="index" class="nav-item nav-link">Courses</a>
+                        <a asp-controller="user" asp-action="course" class="nav-item nav-link">Courses</a>
                         <a asp-controller="course" asp-action="GetMyCourse" class="nav-item nav-link">My Course</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -80,8 +80,9 @@
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a asp-action="Logout" asp-controller="Auth" class="nav-item nav-link">Logout</a>
                     </div>
-                    <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</a>
+                    <a asp-controller="Auth" asp-action="Signin" class="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</a>
                 </div>
             </nav>
         </div>

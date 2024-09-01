@@ -1,0 +1,67 @@
+﻿@* @model IEnumerable<UserListModel>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="card shadow-lg">
+                            <div class="card-header text-center">
+                                <h2>User List</h2>
+
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-bordered">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Full Name</th>
+                                            <th>Email</th>
+                                            <th>Course Name</th>
+                                            <th>Sub Course Name</th>
+
+                                            <th>Price</th>
+
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.UserID</td>
+                                                <td>@item.FullName</td>
+                                                <td>@item.UserEmail</td>
+                                                <td>@item.Course</td>
+                                                <td>@item.SubCourse</td>
+
+                                                <td>@item.Price</td>
+
+                                                <td>
+                                                    <a href="@Url.Action("BlockUser", new { id = item.UserID })" class="btn btn-warning btn-sm">Block</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+ *@
