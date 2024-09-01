@@ -30,11 +30,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         option.LoginPath = "/Auth/SignIn";
         option.AccessDeniedPath = "/Auth/SignIn";
     })
-  .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
-   {
-	   options.ClientId = "806000584966-6tou4mcd0qh0r10ugkh8b3r7c8kmv0k8.apps.googleusercontent.com";
-	   options.ClientSecret = "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";
-   });
+  //.AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+  // {
+	 //  options.ClientId = "806000584966-6tou4mcd0qh0r10ugkh8b3r7c8kmv0k8.apps.googleusercontent.com";
+	 //  options.ClientSecret = "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";
+  // });
 
 builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
