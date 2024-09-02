@@ -1,0 +1,29 @@
+﻿@{
+	Layout = null;
+}
+
+@model UserAccount
+
+<link href="~/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/ElearningMVC.styles.css" asp-append-version="true" />
+<form method="post">
+	First Name <input type="text" asp-for="UserFname" class="form-control" /><br />
+	Last Name<input type="text" asp-for="UserLname" class="form-control" /><br />
+	Mobile<input type="text" asp-for="UserMobile" class="form-control" /><br />
+	Email<input type="email" asp-for="UserEmail" class="form-control" /><br />
+	Password<input type="text" asp-for="UserPass" class="form-control" /><br />
+
+	<input type="submit" value="Save" class="btn btn-primary" />
+
+</form>
+
+<br />
+<a asp-controller="Auth" asp-action="SignIn">SignIn</a>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>	
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

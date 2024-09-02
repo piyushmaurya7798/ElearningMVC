@@ -65,6 +65,30 @@ namespace ElearningMVC.Migrations
                     b.ToTable("cart", (string)null);
                 });
 
+            modelBuilder.Entity("ElearningMVC.Models.Certificate", b =>
+                {
+                    b.Property<int>("CertificateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CertificateId"));
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("IssuseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("suser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CertificateId");
+
+                    b.ToTable("Certificates");
+                });
+
             modelBuilder.Entity("ElearningMVC.Models.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -174,9 +198,35 @@ namespace ElearningMVC.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("suser");
 
-                    b.HasKey("Pid");
+                    b.HasKey("Pid")
+                        .HasName("PK_PaymentPlace");
 
                     b.ToTable("PaymentPlace", (string)null);
+                });
+
+            modelBuilder.Entity("ElearningMVC.Models.TaskAssignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("Finishdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Score")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VideoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("taskUpload")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaskAssignments");
                 });
 
             modelBuilder.Entity("ElearningMVC.Models.UserAccount", b =>
@@ -187,8 +237,8 @@ namespace ElearningMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("IsActive")
-                        .HasColumnType("int")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
                         .HasColumnName("isActive");
 
                     b.Property<string>("UserEmail")
@@ -239,6 +289,32 @@ namespace ElearningMVC.Migrations
                         .HasName("PK__User_acc__3214EC07D092276C");
 
                     b.ToTable("User_account", (string)null);
+                });
+
+            modelBuilder.Entity("ElearningMVC.Models.UserVideoProgress", b =>
+                {
+                    b.Property<int>("ProgressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProgressId"));
+
+                    b.Property<bool>("IsWatched")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Suser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("WatcheDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("videoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProgressId");
+
+                    b.ToTable("UserVideoProgresses");
                 });
 
             modelBuilder.Entity("ElearningMVC.Models.Video", b =>

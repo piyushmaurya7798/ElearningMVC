@@ -25,10 +25,14 @@ public partial class ElearningContext : DbContext
 
     public virtual DbSet<Video> Videos { get; set; }
     public virtual DbSet<Mcqs> Mcqss { get; set; }
+    public virtual DbSet<TaskAssignment> TaskAssignments { get; set; }
+    public virtual DbSet<Certificate> Certificates { get; set; }
+    public virtual DbSet<UserVideoProgress> UserVideoProgresses { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=LAPTOP-2K57GBFM\\MSSQLSERVER01;Database=Elearning;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Elearning;Integrated Security=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -83,7 +87,7 @@ public partial class ElearningContext : DbContext
 
         modelBuilder.Entity<PaymentPlace>(entity =>
         {
-            entity.HasKey(e => e.Pid);
+            entity.HasKey(e => e.Pid).HasName("PK_PaymentPlace");
 
             entity.ToTable("PaymentPlace");
 

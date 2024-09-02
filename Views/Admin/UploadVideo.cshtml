@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+@model Video
+
+@TempData["Videomsg"]
+
+
+
+
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="card shadow-lg">
+                            <div class="card-header text-center">
+                                <h2>Upload Video</h2>
+
+                            </div>
+                            <div class="card-body">
+                                <form asp-action="UploadVideo" method="post">
+                                    <div class="mb-3">
+                                        <label class="form-label">Course</label>
+                                        <select asp-for="Course" id="CourseDrop" class="form-control" asp-items="ViewBag.Courses" id="CourseDropdown"></select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">SubCourse</label>
+                                        <select asp-for="Subcourse" id="SubCourseDrop" class="form-control" asp-items="ViewBag.SubCourses" id="SubcourseDropdown"></select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Topic</label>
+                                        <input asp-for="Topic" class="form-control" />
+                                        <span asp-validation-for="Topic" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Url</label>
+                                        <input asp-for="Url" class="form-control" />
+                                        <span asp-validation-for="Url" class="text-danger"></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/js/admin.js"></script>
+
+
+
+
+
+
+
+

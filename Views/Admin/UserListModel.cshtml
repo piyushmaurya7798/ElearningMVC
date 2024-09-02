@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "_AdminLayout";
+
+}
+
+@model List<UserAccount>
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="card shadow-lg">
+                            <div class="card-header text-center">
+                                <h2>UserList</h2>
+
+                            </div>
+                            <div class="card-body">
+
+
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+
+                                            <th>ID</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Block/Unblock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var user in Model)
+                                        {
+                                            <tr>
+
+                                                <td>@user.Id</td>
+                                                <td>@user.UserFname</td>
+                                                <td>@user.UserEmail</td>
+                                                <td>@user.UserRole</td>
+                                                <td>
+                                                    <form asp-action="Block" method="post">
+                                                        <input type="hidden" name="id" value="@user.Id" />
+                                                        @if (@user.IsActive==false) {
+                                                            <button type="submit" name="UnBlock" class="btn btn-success">UnBlock</button>
+                                                        }
+                                                        else
+                                                        {
+                                                        <button type="submit" name="Block" class="btn btn-danger">Block</button>
+                                                        }
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

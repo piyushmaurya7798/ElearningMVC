@@ -1,0 +1,116 @@
+﻿@model List<ElearningMVC.Models.Certificate>
+
+@{
+    ViewData["Title"] = "Your Certificates";
+}
+<html>
+<head>
+    <style>
+        /* General Page Container */
+        .certificate-page-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Certificate Table */
+        .certificate-table-container {
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: transparent;
+        }
+
+        .table-bordered {
+            border: 1px solid #ddd;
+        }
+
+        .table-header {
+            background-color: #f4f4f4;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Buttons */
+        .download-btn {
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+            .download-btn:hover {
+                background-color: #0056b3;
+            }
+
+        /* No Certificates Message */
+        .no-certificates-message {
+            text-align: center;
+            font-size: 18px;
+            color: #888;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="certificate-page-container">
+    <h2 class="page-title">Your Certificates</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="certificate-table-container">
+            <table class="table table-hover table-bordered">
+                <thead class="table-header">
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Issue Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var certificate in Model)
+                    {
+                        <tr>
+                            <td>@certificate.CourseName</td>
+                            <td>@certificate.IssuseDate.ToString("MMMM dd, yyyy")</td>
+                            <td>
+                                    <a asp-controller="user" asp-action="GenerateCertificate" asp-route-Id="@certificate.CertificateId" class="btn btn-primary download-btn">
+                                    Download Certificate
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p class="no-certificates-message">You have not earned any certificates yet.</p>
+    }
+</div>
+</body>
+</html>

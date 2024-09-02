@@ -15,5 +15,7 @@ namespace ElearningMVC.Models
         public string? Correct { get; set; }
 
         public int vid { get; set; }
+
+        //public int CourseId { get; set; }
     }
 }
