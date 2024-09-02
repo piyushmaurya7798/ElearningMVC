@@ -46,6 +46,7 @@ $('#video-list').on('click', 'li', function () {
     $('#Mcsqdiv').css("display", "none");
     $("#video").show();
     $('#UploadSolution').css("display", "none");
+    markAsWatched(vid);
 });
 $('#mcqs').click(function () {
 
@@ -148,3 +149,31 @@ $('#Backward').click(function () {
         }
     }
 }); 
+
+
+
+
+function markAsWatched(videoId, courseId) {
+    $.ajax({
+        url: '/Course/MarkAsWatched', // Controller action to handle marking the video
+        method: 'POST',
+        data: { videoId: videoId, courseId: courseId },
+        success: function (response) {
+            if (response.success) {
+                alert('Video marked as watched.');
+            } else {
+                if (response.message === "You already have a certificate for this course.") {
+                alert('You already have certificate for this course');
+                    // Redirect to another page if the user already has a certificate
+                    //window.location.href = '/Course/CertificateExists';
+                } else {
+                    alert('Could not mark video as watched. Please try again.');
+                }
+            }
+        },
+        error: function (xhr, status, error) {
+            alert('An error occurred while marking the video as watched.');
+            console.error(error);
+        }
+    });
+}

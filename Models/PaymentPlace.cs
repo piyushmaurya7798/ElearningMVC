@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ElearningMVC.Models;
 
 public partial class PaymentPlace
 {
+    [Key]
     public int Pid { get; set; }
 
     public string? Subcourse { get; set; }

@@ -26,6 +26,8 @@ public partial class ElearningContext : DbContext
     public virtual DbSet<Video> Videos { get; set; }
     public virtual DbSet<Mcqs> Mcqss { get; set; }
     public virtual DbSet<TaskAssignment> TaskAssignments { get; set; }
+    public virtual DbSet<Certificate> Certificates { get; set; }
+    public virtual DbSet<UserVideoProgress> UserVideoProgresses { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -85,7 +87,7 @@ public partial class ElearningContext : DbContext
 
         modelBuilder.Entity<PaymentPlace>(entity =>
         {
-            entity.HasKey(e => e.Pid);
+            entity.HasKey(e => e.Pid).HasName("PK_PaymentPlace");
 
             entity.ToTable("PaymentPlace");
 

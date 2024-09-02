@@ -2,6 +2,7 @@
 using ElearningMVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElearningMVC.Controllers
 {
@@ -75,5 +76,67 @@ namespace ElearningMVC.Controllers
             var data2 = r.Getmcqs(data);
             return Json(data2);
         }
+
+
+        [HttpPost]
+        public IActionResult MarkAsWatched(int videoId)
+        {
+            string userId = HttpContext.Session.GetString("uemail");
+            var course = db.Videos.Find(videoId).Subcourse;
+            var existingCertificate = db.Certificates
+       .FirstOrDefault(c => c.suser == userId && c.CourseName == course);
+            if (existingCertificate != null)
+            {
+                // If the certificate already exists, return a specific response
+                return Json(new { success = false, message = "You already have a certificate for this course." });
+            }
+            // Check if the record already exists
+            var progress = db.UserVideoProgresses
+                .FirstOrDefault(uvp => uvp.Suser == userId && uvp.videoId == videoId);
+
+            if (progress == null)
+            {
+                // If it doesn't exist, create a new record
+                progress = new UserVideoProgress
+                {
+                    Suser = userId,
+                    videoId = videoId,
+                    IsWatched = true,
+                    WatcheDate = DateTime.Now
+                };
+                db.UserVideoProgresses.Add(progress);
+            }
+            else
+            {
+                // Update the existing record
+                progress.IsWatched = true;
+                progress.WatcheDate = DateTime.Now;
+            }
+
+            db.SaveChanges();
+
+            // Check if all videos in the course are watched
+            bool allWatched = db.Videos
+            .Where(v => v.Subcourse == course)
+                .All(v => db.UserVideoProgresses.Any(uvp => uvp.videoId == v.Vid && uvp.Suser == userId && uvp.IsWatched));
+
+            if (allWatched)
+            {
+                // If all videos are watched, issue a certificate
+                var certificate = new Certificate
+                {
+                    suser = userId,
+                    CourseName = course,
+                    IssuseDate = DateTime.Now
+                };
+                db.Certificates.Add(certificate);
+                db.SaveChanges();
+
+                return Json(new { success = true, certificateIssued = true });
+            }
+
+            return Json(new { success = true, certificateIssued = false });
+        }
+
     }
 }

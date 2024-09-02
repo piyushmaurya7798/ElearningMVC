@@ -76,7 +76,8 @@
             <ul id="video-list">
                 @foreach (var data in Model)
                 {
-                    <li data-url="@data.Url" data-vid="@data.Vid">@data.Topic</li>
+                    <li data-url="@data.Url" data-vid="@data.Vid" onclick="markAsWatched(@data.Vid, @data.Course)"> @data.Topic </li>
+
                 }
             </ul>
         </div>
@@ -152,6 +153,9 @@
 </script>
  *@
 
+ <script>
+    
+     </script>
 
 <script>
     function addHiddenFieldValue() {
