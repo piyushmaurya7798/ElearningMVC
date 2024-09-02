@@ -58,6 +58,11 @@ namespace ElearningMVC.Controllers
             var data = db.UserAccounts.Where(x => x.UserEmail.Equals(user.UserEmail)).SingleOrDefault();
             if (data != null)
             {
+                if (data.IsActive==false)
+                {
+
+                    return RedirectToAction("Signin");
+                }
                 bool v = data.UserEmail.Equals(user.UserEmail) && data.UserPass.Equals(user.UserPass);
                 if (v)
                 {

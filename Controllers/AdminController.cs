@@ -93,29 +93,41 @@ namespace ElearningMVC.Controllers
 
         public IActionResult UserListModel()
         {
-            //var UserListModel = db.UserAccounts
-            //    .Join(db.UserCourse,
-            //        ua => ua.UserId,
-            //        uc => uc.UserId,
-            //        (ua, uc) => new { ua, uc })
-            //    .Join(db.Courses,
-            //        combined => combined.uc.CourseId,
-            //        c => c.CourseId,
-            //        (combined, c) => new UserListModel
-            //        {
-            //            UserID = combined.ua.UserId,
-            //            FullName = combined.ua.UserFname + " " + combined.ua.UserLname,
-            //            UserEmail = combined.ua.UserEmail,
-            //            Course = c.Cname,
-            //            SubCourse = c.Subname,
+            var users = db.UserAccounts.Select(u => new UserAccount
+            {
+                Id = u.Id,
+                UserFname = u.UserFname + "" + u.UserLname,
+                UserEmail = u.UserEmail,
+                UserRole = u.UserRole,
 
-            //            Price = c.Price,
+            }).ToList();
 
-            //        })
-            //    .ToList();
+            return View(users);
+        }
+        [HttpPost]
+        public IActionResult Block(int id)
+        {
+            var user = db.UserAccounts.Find(id);
+            if (user != null)
+            {
 
-            return View();
+                user.IsActive = false;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
+
+        //[HttpPost]
+        //public async Task<IActionResult> ApproveReview(int reviewId)
+        //{
+        //    var review = await db.Reviews.FindAsync(reviewId);
+        //    if (review != null)
+        //    {
+        //        review.IsApproved = true;
+        //        await db.SaveChangesAsync();
+        //    }
+        //    return RedirectToAction("Index");
+        //}
     }
 }

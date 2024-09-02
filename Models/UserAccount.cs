@@ -24,7 +24,7 @@ public partial class UserAccount
 
     public string? UserProfile { get; set; }
 
-    public int? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public int? Videocount { get; set; }
 }
