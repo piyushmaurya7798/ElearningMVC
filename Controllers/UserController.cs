@@ -250,7 +250,7 @@ namespace ElearningMVC.Controllers
             string suser = HttpContext.Session.GetString("uemail");
             if (string.IsNullOrEmpty(suser))
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("signin", "Auth");
             }
 
 
@@ -265,13 +265,17 @@ namespace ElearningMVC.Controllers
         public IActionResult GenerateCertificate(int id)
         {
             var suser = HttpContext.Session.GetString("uemail");
+            if (suser==null)
+            {
+                return RedirectToAction("Signin", "Auth");
+            }
             var courses = db.Certificates.Find(id).CourseName;
             var user = db.UserAccounts.FirstOrDefault(u => u.UserEmail == suser);
             var course = db.Courses.FirstOrDefault(c => c.Subname == courses);
 
             if (user == null || course == null)
             {
-                return NotFound();
+                return RedirectToAction("signin","Auth");
             }
 
            var certificateData = GenerateCertificatePdf(user.UserFname, course.Subname);
@@ -289,7 +293,7 @@ namespace ElearningMVC.Controllers
                 document.Open();
 
                 // Add logo
-                string logoPath = "C:\\Users\\Asus\\source\\repos\\ElearningMVC\\wwwroot\\Content\\Images\\Masstechedu.png";
+                string logoPath = "C:\\Users\\Windows\\Source\\Repos\\ElearningMVCFinal\\wwwroot\\Content\\Images\\Masstechedu.png";
                 Image logo = Image.GetInstance(logoPath);
                 logo.ScaleToFit(200f, 80f);
                 logo.Alignment = Element.ALIGN_CENTER;
@@ -322,7 +326,7 @@ namespace ElearningMVC.Controllers
                 document.Add(new Paragraph("\n\n"));
 
                 // Add medal image
-                string medalPath = "C:\\Users\\Asus\\source\\repos\\ElearningMVC\\wwwroot\\Content\\Images\\rank1.png"; // Update with your medal image path or byte array
+                string medalPath = "C:\\Users\\Windows\\Source\\Repos\\ElearningMVCFinal\\wwwroot\\Content\\Images\\rank1.png"; // Update with your medal image path or byte array
                 Image medal = Image.GetInstance(medalPath);
                 medal.ScaleToFit(100f, 100f);
                 medal.Alignment = Element.ALIGN_CENTER;

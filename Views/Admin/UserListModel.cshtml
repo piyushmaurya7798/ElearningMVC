@@ -42,7 +42,13 @@
                                                 <td>
                                                     <form asp-action="Block" method="post">
                                                         <input type="hidden" name="id" value="@user.Id" />
-                                                        <button type="submit" class="btn btn-danger">Block</button>
+                                                        @if (@user.IsActive==false) {
+                                                            <button type="submit" name="UnBlock" class="btn btn-success">UnBlock</button>
+                                                        }
+                                                        else
+                                                        {
+                                                        <button type="submit" name="Block" class="btn btn-danger">Block</button>
+                                                        }
                                                     </form>
                                                 </td>
                                             </tr>

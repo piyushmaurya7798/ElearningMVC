@@ -62,7 +62,7 @@ namespace ElearningMVC.Controllers
             };
             db.TaskAssignments.Add(obj);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("GetMyCourse");
         }
 
         public void UploadFile(IFormFile file, string path)

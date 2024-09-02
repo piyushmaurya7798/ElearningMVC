@@ -63,17 +63,32 @@ namespace ElearningMVC.Controllers
 
                     return RedirectToAction("Signin");
                 }
+                
                 bool v = data.UserEmail.Equals(user.UserEmail) && data.UserPass.Equals(user.UserPass);
                 if (v)
                 {
-                    var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.UserEmail) },
-                        CookieAuthenticationDefaults.AuthenticationScheme);
+                    if (data.UserRole == "Admin")
+                    {
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.UserEmail) },
+                       CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    var principal = new ClaimsPrincipal(identity);
+                        var principal = new ClaimsPrincipal(identity);
 
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    HttpContext.Session.SetString("uemail", user.UserEmail);
-                    return RedirectToAction("index", "home");
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                        HttpContext.Session.SetString("uemail", user.UserEmail);
+                        return RedirectToAction("AddCourse", "Admin");
+                    }
+                    else
+                    {
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.UserEmail) },
+                            CookieAuthenticationDefaults.AuthenticationScheme);
+
+                        var principal = new ClaimsPrincipal(identity);
+
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                        HttpContext.Session.SetString("uemail", user.UserEmail);
+                        return RedirectToAction("index", "home");
+                    }
                 }
                 else
                 {

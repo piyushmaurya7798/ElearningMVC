@@ -1,4 +1,24 @@
 ﻿$(document).ready(function () {
+    $.ajax({
+        url: "/Admin/CourseDropDown",
+        type: "Get",
+        /* data: $('#contactform').serialize(),*/
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function (result) {
+            var htmlContent = "";
+            var i = 1;
+            $.each(result, function (index, item) {
+                console.log("Processing item:", item);
+
+                htmlContent += "<option value='" + item.Cname + "'>" + item.Cname + "</li>";
+
+                i++;
+            });
+            console.log(htmlContent);
+            $('#CourseDrop').html(htmlContent);
+
+        }
+    })
 });
 
 $('#ContactForm').click(function () {

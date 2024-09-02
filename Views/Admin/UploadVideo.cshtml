@@ -24,11 +24,11 @@
                                 <form asp-action="UploadVideo" method="post">
                                     <div class="mb-3">
                                         <label class="form-label">Course</label>
-                                        <select asp-for="Course" class="form-control" asp-items="ViewBag.Courses" id="CourseDropdown"></select>
+                                        <select asp-for="Course" id="CourseDrop" class="form-control" asp-items="ViewBag.Courses" id="CourseDropdown"></select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">SubCourse</label>
-                                        <select asp-for="Subcourse" class="form-control" asp-items="ViewBag.SubCourses" id="SubcourseDropdown"></select>
+                                        <select asp-for="Subcourse" id="SubCourseDrop" class="form-control" asp-items="ViewBag.SubCourses" id="SubcourseDropdown"></select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Topic</label>
@@ -53,7 +53,7 @@
 
 
 
-
+<script src="~/js/admin.js"></script>
 
 
 

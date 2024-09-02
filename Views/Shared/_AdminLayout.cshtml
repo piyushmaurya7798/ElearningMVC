@@ -129,7 +129,7 @@
                                         <div class="media">
                                             <img class="d-flex align-self-center img-radius" src="/assets/images/avatar-4.jpg" alt="Generic placeholder image">
                                             <div class="media-body">
-                                                <h5 class="notification-user">John Doe</h5>
+                                                <h5 class="notification-user">Admin</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
                                                 <span class="notification-time">30 minutes ago</span>
                                             </div>
@@ -142,7 +142,7 @@
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span>Admin</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -213,7 +213,7 @@
                                 </li>
 
                                 <li class="active">
-                                    <a asp-action="Index" asp-controller="Admin">
+                                    <a asp-action="UserListModel" asp-controller="Admin">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">User List</span>
                                         <span class="pcoded-mcaret"></span>
@@ -238,7 +238,7 @@
                             </ul>
                         </div>
                     </nav>
-
+                    <div class="pcoded-content">
                     <div class="card borderless-card">
                         <div class="card-block danger-breadcrumb">
                             <div class="page-header-breadcrumb">
@@ -259,6 +259,10 @@
                         </div>
                     </div>
                 </div>
+                <div/>
+
+
+
 
                 @RenderBody()
                 <div class="pcoded-content">
@@ -306,6 +310,7 @@
     <script type="text/javascript " src="~/assets/js/SmoothScroll.js"></script>
     <script src="~/assets/js/pcoded.min.js"></script>
     <script src="~/assets/js/demo-12.js"></script>
+    <script src="~/js/admin.js"></script>
     <script src="~/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script>
         var $window = $(window);

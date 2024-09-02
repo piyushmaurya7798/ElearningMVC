@@ -1,93 +1,65 @@
 ﻿@{
     Layout = "_AdminLayout";
+    // var breadcrumb = Context.Session.GetString("BreadCrum");
 }
-<div class="pcoded-inner-content">
-    <div class="main-body">
-        <div class="page-wrapper">
-            <div class="page-body">
-                <div class="row justify-content-center">
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="card shadow-lg">
-                            <div class="card-header text-center">
-                                <h2>Course Progress</h2>
-                            </div>
 
 
-                                    <div class="card project-task">
-                                        <div class="card-header">
-                                            <div class="card-header-left">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Payments Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
 
-                                            </div>
-                                            <div class="card-header-right">
-                                                <ul class="list-unstyled card-option">
-                                                    <li><i class="icofont icofont-simple-left"></i></li>
-                                                    <li><i class="icofont icofont-maximize full-card"></i></li>
-                                                    <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                                    <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                                    <li><i class="icofont icofont-error close-card"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="card-block p-b-10">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead class="table-dark">
-                                                        <tr>
-                                                            <th>UserId</th>
-                                                            <th>Username</th>
-                                                            <th>Course Name</th>
-                                                            <th>Price</th>
-                                                            <th>Review</th>
-                                                            <th>Review Approved</th>
-                                                            <th>Progress</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (var item in Model)
-                                                        {
-                                                            <tr>
-                                                                <td>@item.UserId</td>
-                                                                <td>@item.Username</td>
-                                                                <td>@item.CourseName</td>
-                                                                <td>@item.Price</td>
-                                                                <td>
-                                                                    <p>@item.Review</p>
-                                                                </td>
-                                                                <td>
-                                                                    @if (item.ReviewApproved)
-                                                                    {
-                                                                        <i class="icofont icofont-check-circled text-success"></i>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <i class="icofont icofont-close-circled text-danger"></i>
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-c-blue" role="progressbar" aria-valuenow="@item.Progress"
-                                                                             aria-valuemin="0" aria-valuemax="100" style="width:@item.Progress%">
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-
-
-                            <div class="card-footer">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="d-flex" style="justify-content:space-between"> 
+        <span>@TempData["TotalUser"]</span>
+        <div>@ViewBag.TotalUser</div>
+        <span>@TempData["TotalPayment"]</span>
+        <span>@ViewBag.TotalPayment</span>
     </div>
-</div>
-</div>
-
+    <div>
+    <canvas id="userPaymentsChart" width="300" height="100" style="width:500px;height:400px"></canvas>
+    </div>
+    <script>
+        $(document).ready(function () {
+            
+            $.ajax({
+                url: '/Admin/GetUserPayments',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                   
+                    var ctx = document.getElementById('userPaymentsChart').getContext('2d');
+                    var userPaymentsChart = new Chart(ctx, {
+                        type: 'bar', 
+                        data: {
+                            labels: data.users, 
+                            datasets: [{
+                                label: 'Total Payments (USD)',
+                                data: data.payments, 
+                                backgroundColor: 'rgba(54, 162, 235, 0.5)', 
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1 
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true // Start y-axis at 0
+                                }
+                            }
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching user payments data:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
